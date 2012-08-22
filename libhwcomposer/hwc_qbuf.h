@@ -16,7 +16,7 @@
  */
 
 #include <gralloc_priv.h>
-#include <genlock.h>
+#include "genlock.h"
 
 // -----------------------------------------------------------------------------
 // QueuedBufferStore

@@ -21,7 +21,7 @@
 #include <cutils/properties.h>
 #include <sys/mman.h>
 
-#include <genlock.h>
+#include "genlock.h"
 
 #include "gr.h"
 #include "gpu.h"
