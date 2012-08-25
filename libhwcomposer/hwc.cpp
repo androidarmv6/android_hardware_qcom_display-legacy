@@ -175,9 +175,14 @@ static int hwc_set(hwc_composer_device_t *dev,
         CopyBit::draw(ctx, list, (EGLDisplay)dpy, (EGLSurface)sur);
         MDPComp::draw(ctx, list);
         EGLBoolean sucess = eglSwapBuffers((EGLDisplay)dpy, (EGLSurface)sur);
+        wait4fbPost(ctx);
+        //Can draw to HDMI only when fb_post is reached
         UIMirrorOverlay::draw(ctx);
+        //HDMI commit and primary commit (PAN) happening in parallel
         if(ctx->mExtDisplay->getExternalDisplay())
            ctx->mExtDisplay->commit();
+        //Virtual barrier for threads to finish
+        wait4Pan(ctx);
     } else {
         ctx->mOverlay->setState(ovutils::OV_CLOSED);
         ctx->qbuf->unlockAll();
@@ -224,7 +229,7 @@ static int hwc_device_open(const struct hw_module_t* module, const char* name,
 #ifndef NO_HW_VSYNC
         //XXX: This disables hardware vsync on 8x55
         // Fix when HW vsync is available on 8x55
-        if(dev->mMDP.version < 400) {
+        if(dev->mMDP.version == 400) {
 #endif
             dev->device.common.version = 0;
             ALOGI("%s: Hardware VSYNC not supported", __FUNCTION__);
