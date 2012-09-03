@@ -63,7 +63,7 @@ MDPVersion::MDPVersion()
             mdp_version = MDP_V_UNKNOWN;
         }
         int len = strlen("msmfbXX_");
-        if (mdp_version == MDP_V3_0_3)
+        if (mdp_version == MDP_V3_0_2 || mdp_version == MDP_V3_0_3)
             len++;
         panel_type = fb_finfo.id[len];
 
@@ -71,7 +71,7 @@ MDPVersion::MDPVersion()
     close(fb_fd);
     mMDPVersion = mdp_version;
     mHasOverlay = false;
-    if((mMDPVersion >= MDP_V4_0) || (mMDPVersion == MDP_V_UNKNOWN))
+    if(mMDPVersion >= MDP_V4_0)
         mHasOverlay = true;
     mPanelType = panel_type;
 }
