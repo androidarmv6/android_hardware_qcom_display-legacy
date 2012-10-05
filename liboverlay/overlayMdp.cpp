@@ -197,11 +197,13 @@ bool MdpCtrl::get() {
 void MdpCtrl::adjustSrcWhf(const bool& rotUsed) {
     if(rotUsed) {
         utils::Whf whf = getSrcWhf();
+#ifndef QCOM_MISSING_PIXEL_FORMATS
         if(whf.format == MDP_Y_CRCB_H2V2_TILE ||
                 whf.format == MDP_Y_CBCR_H2V2_TILE) {
             whf.w = utils::alignup(whf.w, 64);
             whf.h = utils::alignup(whf.h, 32);
         }
+#endif
         //For example: If original format is tiled, rotator outputs non-tiled,
         //so update mdp's src fmt to that.
         whf.format = utils::getRotOutFmt(whf.format);

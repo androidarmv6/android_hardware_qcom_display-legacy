@@ -166,24 +166,30 @@ int getMdpFormat(int format) {
             return MDP_RGB_565;
         case HAL_PIXEL_FORMAT_BGRA_8888:
             return MDP_BGRA_8888;
+#ifndef QCOM_MISSING_PIXEL_FORMATS
         case HAL_PIXEL_FORMAT_YV12:
             return MDP_Y_CR_CB_GH2V2;
+#endif
         case HAL_PIXEL_FORMAT_YCbCr_422_SP:
             return MDP_Y_CBCR_H2V1;
         case HAL_PIXEL_FORMAT_YCrCb_420_SP:
             return MDP_Y_CRCB_H2V2;
 
         //From gralloc_priv.h
+#ifndef QCOM_MISSING_PIXEL_FORMATS
         case HAL_PIXEL_FORMAT_YCbCr_420_SP_TILED:
             return MDP_Y_CBCR_H2V2_TILE;
+#endif
         case HAL_PIXEL_FORMAT_YCbCr_420_SP:
             return MDP_Y_CBCR_H2V2;
         case HAL_PIXEL_FORMAT_YCrCb_422_SP:
             return MDP_Y_CRCB_H2V1;
+#ifndef QCOM_MISSING_PIXEL_FORMATS
         case HAL_PIXEL_FORMAT_YCbCr_444_SP:
             return MDP_Y_CBCR_H1V1;
         case HAL_PIXEL_FORMAT_YCrCb_444_SP:
             return MDP_Y_CRCB_H1V1;
+#endif
 
         default:
             //Unsupported by MDP

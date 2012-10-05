@@ -54,11 +54,13 @@ void MdpRot::setSource(const overlay::utils::Whf& awhf) {
     utils::Whf whf(awhf);
 
     mRotImgInfo.src.format = whf.format;
+#ifndef QCOM_MISSING_PIXEL_FORMATS
     if(whf.format == MDP_Y_CRCB_H2V2_TILE ||
         whf.format == MDP_Y_CBCR_H2V2_TILE) {
         whf.w =  utils::alignup(awhf.w, 64);
         whf.h = utils::alignup(awhf.h, 32);
     }
+#endif
 
     mRotImgInfo.src.width = whf.w;
     mRotImgInfo.src.height = whf.h;

@@ -545,12 +545,18 @@ inline bool isYuv(uint32_t format) {
         case MDP_Y_CBCR_H2V1:
         case MDP_Y_CBCR_H2V2:
         case MDP_Y_CRCB_H2V2:
+#ifndef QCOM_MISSING_PIXEL_FORMATS
         case MDP_Y_CRCB_H1V1:
+#endif
         case MDP_Y_CRCB_H2V1:
+#ifndef QCOM_MISSING_PIXEL_FORMATS
         case MDP_Y_CRCB_H2V2_TILE:
         case MDP_Y_CBCR_H2V2_TILE:
+#endif
         case MDP_Y_CR_CB_H2V2:
+#ifndef QCOM_MISSING_PIXEL_FORMATS
         case MDP_Y_CR_CB_GH2V2:
+#endif
             return true;
         default:
             return false;
@@ -692,14 +698,18 @@ inline int getMdpOrient(eTransform rotation) {
 
 inline int getRotOutFmt(uint32_t format) {
     switch (format) {
+#ifndef QCOM_MISSING_PIXEL_FORMATS
         case MDP_Y_CRCB_H2V2_TILE:
             return MDP_Y_CRCB_H2V2;
         case MDP_Y_CBCR_H2V2_TILE:
             return MDP_Y_CBCR_H2V2;
+#endif
         case MDP_Y_CB_CR_H2V2:
             return MDP_Y_CBCR_H2V2;
+#ifndef QCOM_MISSING_PIXEL_FORMATS
         case MDP_Y_CR_CB_GH2V2:
             return MDP_Y_CRCB_H2V2;
+#endif
         default:
             return format;
     }
