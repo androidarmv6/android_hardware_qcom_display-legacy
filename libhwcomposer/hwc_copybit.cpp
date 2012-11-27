@@ -78,7 +78,7 @@ bool CopyBit::canUseCopybitForYUV(hwc_context_t *ctx) {
     return true;
 }
 
-bool CopyBit::canUseCopybitForRGB(hwc_context_t *ctx, hwc_layer_list_t *list) {
+bool CopyBit::canUseCopybitForRGB(hwc_context_t *ctx, hwc_display_contents_1_t *list) {
     int compositionType =
         qdutils::QCCompositionType::getInstance().getCompositionType();
 
@@ -108,7 +108,7 @@ bool CopyBit::canUseCopybitForRGB(hwc_context_t *ctx, hwc_layer_list_t *list) {
     return false;
 }
 
-unsigned int CopyBit::getRGBRenderingArea(const hwc_layer_list_t *list) {
+unsigned int CopyBit::getRGBRenderingArea(const hwc_display_contents_1_t *list) {
     //Calculates total rendering area for RGB layers
     unsigned int renderArea = 0;
     unsigned int w=0, h=0;
@@ -124,7 +124,7 @@ unsigned int CopyBit::getRGBRenderingArea(const hwc_layer_list_t *list) {
     return renderArea;
 }
 
-bool CopyBit::prepare(hwc_context_t *ctx, hwc_layer_list_t *list) {
+bool CopyBit::prepare(hwc_context_t *ctx, hwc_display_contents_1_t *list) {
 
     sCopyBitDraw = false;
 
@@ -172,7 +172,7 @@ bool CopyBit::prepare(hwc_context_t *ctx, hwc_layer_list_t *list) {
     return true;
 }
 
-bool CopyBit::draw(hwc_context_t *ctx, hwc_layer_list_t *list, EGLDisplay dpy,
+bool CopyBit::draw(hwc_context_t *ctx, hwc_display_contents_1_t *list, EGLDisplay dpy,
                                                                EGLSurface sur){
     // draw layers marked for COPYBIT
     int retVal = true;
@@ -208,7 +208,7 @@ bool CopyBit::draw(hwc_context_t *ctx, hwc_layer_list_t *list, EGLDisplay dpy,
     return true;
 }
 
-int  CopyBit::drawLayerUsingCopybit(hwc_context_t *dev, hwc_layer_t *layer,
+int  CopyBit::drawLayerUsingCopybit(hwc_context_t *dev, hwc_layer_1_t *layer,
                                                             EGLDisplay dpy,
                                                         EGLSurface surface,
                                      android_native_buffer_t *renderBuffer)
@@ -434,7 +434,7 @@ int  CopyBit::drawLayerUsingCopybit(hwc_context_t *dev, hwc_layer_t *layer,
     return err;
 }
 
-void CopyBit::getLayerResolution(const hwc_layer_t* layer,
+void CopyBit::getLayerResolution(const hwc_layer_1_t* layer,
                                  unsigned int& width, unsigned int& height)
 {
     hwc_rect_t displayFrame  = layer->displayFrame;
@@ -443,7 +443,7 @@ void CopyBit::getLayerResolution(const hwc_layer_t* layer,
     height = displayFrame.bottom - displayFrame.top;
 }
 
-bool CopyBit::validateParams(hwc_context_t *ctx, const hwc_layer_list_t *list) {
+bool CopyBit::validateParams(hwc_context_t *ctx, const hwc_display_contents_1_t *list) {
    //Validate parameters
    if (!ctx) {
        ALOGE("%s:Invalid HWC context", __FUNCTION__);
