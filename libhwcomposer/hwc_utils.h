@@ -62,7 +62,7 @@ enum HWCCompositionType {
     HWC_USE_OVERLAY = HWC_OVERLAY, // This layer is to be handled by the overlay
     HWC_USE_BACKGROUND
                 = HWC_BACKGROUND,  // This layer is to be handled by TBD
-    HWC_USE_COPYBIT                // This layer is to be handled by copybit
+    HWC_USE_COPYBIT = 4            // This layer is to be handled by copybit
 };
 
 enum {
