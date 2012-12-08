@@ -113,9 +113,8 @@ static void *vsync_loop(void *param)
       // reset fd
       fd_timestamp = -1;
 #else
-    // I think the kernel just reports the time vsync finished so
-    // just send sf the current time
-    ctx->proc->vsync(ctx->proc, 0, systemTime(CLOCK_MONOTONIC));
+    usleep(16000);
+    ctx->proc->vsync(ctx->proc, 0, systemTime());
 #endif
       // repeat, whatever, you just did
     } while (true);
