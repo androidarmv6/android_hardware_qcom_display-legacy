@@ -28,6 +28,10 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(common_deps)
 LOCAL_SRC_FILES               :=  gpu.cpp gralloc.cpp framebuffer.cpp mapper.cpp
 include $(BUILD_SHARED_LIBRARY)
 
+ifeq ($(BOARD_USES_ECLAIR_LIBCAMERA),true)
+    LOCAL_CFLAGS += -DECLAIR_LIBCAMERA
+endif
+
 #MemAlloc Library
 include $(CLEAR_VARS)
 LOCAL_MODULE           := libmemalloc
