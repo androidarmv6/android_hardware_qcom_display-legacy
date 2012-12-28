@@ -19,13 +19,13 @@ common_flags := -DDEBUG_CALC_FPS -Wno-missing-field-initializers
 #common_flags += -Werror
 
 ifeq ($(TARGET_USES_ION),true)
-common_flags += -DUSE_ION
+#common_flags += -DUSE_ION
 endif
 
 ifeq ($(ARCH_ARM_HAVE_NEON),true)
-    common_flags += -D__ARM_HAVE_NEON
+#    common_flags += -D__ARM_HAVE_NEON
 endif
 
-ifeq ($(TARGET_NO_HW_VSYNC),true)
+#ifeq ($(TARGET_NO_HW_VSYNC),true)
     common_flags += -DNO_HW_VSYNC
-endif
+#endif
