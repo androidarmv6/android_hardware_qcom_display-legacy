@@ -1,8 +1,8 @@
 #Enables the listed display HAL modules
 #libs to be built for QCOM targets only
 
-ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
-ifeq ($(TARGET_QCOM_DISPLAY_VARIANT),legacy)
+ifneq ($(filter msm7x27,$(TARGET_BOARD_PLATFORM)),)
+ifeq ($(TARGET_QCOM_DISPLAY_VARIANT),)
 
 display-hals := libgralloc libgenlock libcopybit
 display-hals += libhwcomposer liboverlay libqdutils
