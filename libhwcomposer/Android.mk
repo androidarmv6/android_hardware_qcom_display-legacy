@@ -40,6 +40,10 @@ ifeq ($(TARGET_QCOM_HDMI_RESOLUTION_AUTO),true)
     LOCAL_CFLAGS += -DFORCE_AUTO_RESOLUTION
 endif
 
+ifeq ($(TARGET_BOARD_PLATFORM),msm7x27)
+LOCAL_CFLAGS += -DTARGET_7x27
+endif
+
 include $(BUILD_SHARED_LIBRARY)
 
 #libhwcservice library
