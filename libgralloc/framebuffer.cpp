@@ -152,7 +152,9 @@ static int fb_post(struct framebuffer_device_t* dev, buffer_handle_t buffer)
 static int fb_compositionComplete(struct framebuffer_device_t* dev)
 {
     // TODO: Properly implement composition complete callback
-
+#ifdef ANCIENT_GL
+    glFinish();
+#endif
     return 0;
 }
 
@@ -207,14 +209,21 @@ int mapFrameBufferLocked(struct private_module_t* module)
         /*
          * Explicitly request RGBA_8888
          */
-        info.bits_per_pixel = 32;
+#ifdef SEMC_RGBA_8888_OFFSET
+        info.red.offset     = 0;
+        info.green.offset   = 8;
+        info.blue.offset    = 16;
+        info.transp.offset  = 24;
+#else
         info.red.offset     = 24;
-        info.red.length     = 8;
         info.green.offset   = 16;
-        info.green.length   = 8;
         info.blue.offset    = 8;
-        info.blue.length    = 8;
         info.transp.offset  = 0;
+#endif
+        info.bits_per_pixel = 32;
+        info.red.length     = 8;
+        info.green.length   = 8;
+        info.blue.length    = 8;
         info.transp.length  = 8;
 
         /* Note: the GL driver does not have a r=8 g=8 b=8 a=0 config, so if we
