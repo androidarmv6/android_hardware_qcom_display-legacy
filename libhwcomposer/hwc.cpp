@@ -163,8 +163,10 @@ static int hwc_eventControl(struct hwc_composer_device_1* dev, int dpy,
             }
             temp = ctx->vstate.enable;
 #ifndef NO_HW_VSYNC
+#ifdef MSMFB_OVERLAY_VSYNC_CTRL
             if(ioctl(m->framebuffer->fd, MSMFB_OVERLAY_VSYNC_CTRL, &enabled) < 0)
                 ret = -errno;
+#endif
 #endif
             /* vsync state change logic */
             if (enabled == 1) {

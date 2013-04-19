@@ -4,6 +4,7 @@ common_includes += hardware/qcom/display-legacy/libgenlock
 common_includes += hardware/qcom/display-legacy/liboverlay
 common_includes += hardware/qcom/display-legacy/libcopybit
 common_includes += hardware/qcom/display-legacy/libqdutils
+common_includes += hardware/qcom/display-legacy/libhwcomposer
 
 ifeq ($(TARGET_USES_POST_PROCESSING),true)
     common_flags     += -DUSES_POST_PROCESSING
@@ -31,5 +32,8 @@ ifneq ($(TARGET_NO_HW_VSYNC),false)
 endif
 
 ifeq ($(TARGET_BOARD_PLATFORM),msm7x27)
-LOCAL_CFLAGS += -DTARGET_MSM7x27
+     common_flags += -DTARGET_MSM7x27
 endif
+
+common_deps := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+kernel_includes := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
