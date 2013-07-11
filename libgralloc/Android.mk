@@ -25,7 +25,9 @@ LOCAL_SHARED_LIBRARIES        := $(common_libs) libmemalloc libgenlock
 LOCAL_SHARED_LIBRARIES        += libqdutils libGLESv1_CM
 LOCAL_CFLAGS                  := $(common_flags) -DLOG_TAG=\"gralloc\"
 LOCAL_ADDITIONAL_DEPENDENCIES := $(common_deps)
-LOCAL_SRC_FILES               :=  gpu.cpp gralloc.cpp framebuffer.cpp mapper.cpp
+LOCAL_SRC_FILES               := gpu.cpp gralloc.cpp framebuffer.cpp mapper.cpp
+LOCAL_COPY_HEADERS_TO         := $(common_header_export_path)
+LOCAL_COPY_HEADERS            := gralloc_priv.h
 include $(BUILD_SHARED_LIBRARY)
 
 ifeq ($(BOARD_USES_ECLAIR_LIBCAMERA),true)
