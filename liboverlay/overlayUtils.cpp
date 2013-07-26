@@ -188,8 +188,6 @@ int getMdpFormat(int format) {
         default:
             //Unsupported by MDP
             //---graphics.h--------
-            //HAL_PIXEL_FORMAT_RGBA_5551
-            //HAL_PIXEL_FORMAT_RGBA_4444
             //HAL_PIXEL_FORMAT_YCbCr_422_I
             //---gralloc_priv.h-----
             //HAL_PIXEL_FORMAT_YCrCb_420_SP_ADRENO    = 0x7FA30C01
