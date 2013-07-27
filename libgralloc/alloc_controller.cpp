@@ -41,6 +41,8 @@
 #include "gr.h"
 #include "comptype.h"
 
+ANDROID_SINGLETON_STATIC_INSTANCE(qdutils::QCCompositionType);
+
 using namespace gralloc;
 using namespace qdutils;
 
